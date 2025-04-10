@@ -6,7 +6,6 @@ import 'react-resizable/css/styles.css';
 import { useTexture } from '@react-three/drei';
 import * as THREE from "three"
 
-const Draggable = dynamic(() => import('react-draggable'), { ssr: false });
 const ResizableBox = dynamic(
   () =>
     import('react-resizable').then((mod) => mod.ResizableBox),
@@ -96,7 +95,6 @@ function Box (props) {
 }
 
 export default function Visualizer() {
-  const nodeRef = React.useRef(null);
 
   const [vertex, setVertex] = useState("");
   const [fragment, setFragment] = useState("");
@@ -119,18 +117,17 @@ export default function Visualizer() {
   console.log(Fragment);
   
   return (
-    <Draggable nodeRef={nodeRef} cancel=".react-resizable-handle">
-      <div ref={nodeRef}>
+    <div>
         <ResizableBox
           width={200}
           height={200}
-          minConstraints={[100, 100]}
+          minConstraints={[150, 150]}
           maxConstraints={[500, 500]}
           resizeHandles={['se']}
         >
-          <div className="bg-default-gray w-full h-full rounded-xl border border-gray-400">
-            <p className='m-1 text-center font-mono text-xs rounded-full bg-gray-400 border'>
-                JAMZVisualizer
+          <div className="bg-default-gray w-full h-full rounded-xl border-3 border-gray-400 overflow-hidden">
+            <p className='m-1 text-center font-mono text-xs border-b border-gray-400'>
+                JAMZ.Visualizer
               </p>
             <Canvas>
               <Scene vertex={vertex} fragment={fragment} />
@@ -145,7 +142,6 @@ export default function Visualizer() {
 
 
         </ResizableBox>
-      </div>
-    </Draggable>
+    </div>
   );
 }
