@@ -14,7 +14,7 @@ export default function Home() {
   const nodeRef = React.useRef(null);
 
   return (
-    <div className="display-flex grid grid-cols-10">
+    <div className="bg-blue-300 display-flex grid grid-cols-1">
       <Draggable nodeRef={nodeRef} cancel=".react-resizable-handle">
         <div ref={nodeRef} className="z-2">
           <Lyrics />
