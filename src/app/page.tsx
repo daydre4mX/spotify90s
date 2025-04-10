@@ -6,7 +6,7 @@ import Albumart from "./components/albumart/albumart";
 export default function Home() {
   //priority is decided by the order of the divs, last item = highest
   return (
-    <div className="grid grid-cols-2">
+    <div className="grid grid-cols-3">
       <Lyrics />
       <Albumart/>
       <Vis />
