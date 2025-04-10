@@ -1,8 +1,11 @@
 'use client';
-import React, { useRef, useState } from 'react';
+import React, { Fragment, useEffect, useMemo, useRef, useState } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import dynamic from 'next/dynamic';
 import 'react-resizable/css/styles.css';
+import { useTexture } from '@react-three/drei';
+import * as THREE from "three"
+import axios from "axios";
 
 const Draggable = dynamic(() => import('react-draggable'), { ssr: false });
 const ResizableBox = dynamic(
@@ -11,14 +14,103 @@ const ResizableBox = dynamic(
   { ssr: false }
 );
 
-function audioReactiveScene(audioStream){
-  console.log(1+1);
+
+const Scene = ({vertex, fragment}) => {
+  const meshRef = useRef();
+
+  const noiseTexture = useTexture("noise2.png");
+  
+  useFrame((state) => {
+    let time = state.clock.getElapsedTime();
+    
+    meshRef.current.material.uniforms.iTime.value = time + 20;
+  });
+
+  
+  const uniforms = useMemo(
+    () => ({
+      iTime: {
+        type: "f",
+        value: 1.0,
+      },
+      iResolution: {
+        type: "v2",
+        value: new THREE.Vector2(4,3),
+      },
+      iChannel0: {
+        type: "t",
+        value: noiseTexture,
+      },
+    }),
+    []
+  );
+
+
+  return(
+    <mesh ref={meshRef}>
+      <planeGeometry args={[4, 3]} />
+      <shaderMaterial
+        uniforms={uniforms}
+        vertexShader={vertex}
+        fragmentShader={fragment}
+        side={THREE.DoubleSide}
+      />
+    </mesh>
+
+
+
+  )
 }
 
+function Box (props) {
+  // This reference gives us direct access to the THREE.Mesh object.
+  const ref = useRef()
+
+  // Hold state for hovered and clicked events.
+  const [hovered, hover] = useState(false)
+  const [clicked, click] = useState(false)
+
+  // Subscribe this component to the render-loop and rotate the mesh every frame.
+  useFrame((state,delta) => (
+  
+    ref.current.rotation.y += delta,
+    ref.current.rotation.x += delta,
+    
+  ))
+
+  // Return the view.
+  // These are regular three.js elements expressed in JSX.
+  return (
+    <mesh      
+      {...props}
+      ref={ref}
+      scale={clicked ? 1.5 : 1}
+      onClick={(event) => click(!clicked)}
+      onPointerOver={(event) => hover(true)}
+      onPointerOut={(event) => hover(false)}
+    > 
+      <boxGeometry args={[1, 1, 1]} />      
+      <meshStandardMaterial color={hovered ? 'hotpink' : 'orange' } />    
+    </mesh>
+  )
+}
 
 export default function Visualizer() {
   const nodeRef = React.useRef(null);
 
+  const [vertex, setVertex] = useState("");
+  const [fragment, setFragment] = useState("");
+
+  useEffect(() => {
+
+    axios.get("/vertexShader.glsl").then((res) => setVertex(res.data));
+    axios.get("/fragmentShader.glsl").then((res) => setFragment(res.data));
+    
+  }, []);
+
+  console.log(vertex);
+  console.log(Fragment);
+  
   return (
     <Draggable nodeRef={nodeRef} cancel=".react-resizable-handle">
       <div ref={nodeRef}>
@@ -34,10 +126,13 @@ export default function Visualizer() {
                 JAMZVisualizer
               </p>
             <Canvas>
-              <color attach="background" args={['#fff']}/>
-              <ambientLight intensity ={0.5}/>
-              <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1}/>
-              <pointLight position={[-1.2, 0, 0]}/>
+              <Scene vertex={vertex} fragment={fragment} />
+              {/* <color attach="background" args={['#fff']} />
+              <ambientLight intensity={0.5} />      
+              <spotLight intensity= {1000} position={[10, 10, 10]} angle={0.15} penumbra={1} />      
+              <pointLight intensity= {1000} position={[-10, -10, -10]} />      
+              <Box position={[-1.2, 0, 0]} />     
+              <Box position={[1.2, 0, 0]} />  */}
             </Canvas>
           </div>
 
