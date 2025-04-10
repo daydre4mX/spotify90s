@@ -1,26 +1,23 @@
 {
-  "name": "spotify90s",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev --turbopack",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
-  },
-  "dependencies": {
-    "next": "15.3.0",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "react-resizable": "^3.0.5"
-  },
-  "devDependencies": {
-    "@tailwindcss/postcss": "^4",
-    "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
-    "@types/react-resizable": "^3.0.8",
-    "tailwindcss": "^4",
-    "typescript": "^5"
+    "name": "spotify90s",
+    "version": "1.0.0",
+    "description": "Modernized Winamp app that connects to Spotify",
+    "main": "server.js",
+    "type": "module",
+    "scripts": {
+      "start": "node server.js",
+      "dev": "nodemon server.js"
+    },
+    "keywords": [],
+    "author": "Jonathan Bell",
+    "license": "MIT",
+    "dependencies": {
+      "@supabase/supabase-js": "^2.39.3",
+      "dotenv": "^16.3.1",
+      "express": "^4.18.2"
+    },
+    "devDependencies": {
+      "nodemon": "^3.0.2"
+    }
   }
-}
+  
