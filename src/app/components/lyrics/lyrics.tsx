@@ -15,7 +15,7 @@ export default function Lyrics() {
         <ResizableBox
           width={200}
           height={200}
-          minConstraints={[100, 100]}
+          minConstraints={[150, 150]}
           maxConstraints={[500, 500]}
           resizeHandles={['se']}
         >
@@ -23,7 +23,7 @@ export default function Lyrics() {
           <p className='m-1 text-center font-mono text-xs border-b border-gray-400'>
               JAMZ.LYRICS
             </p>
-            <div className='overflow-auto rounded-xs bg-gray-600 m-1 font-mono'>
+            <div className='overflow-hidden rounded-xs bg-gray-600 m-1 font-mono'>
               Lyrics will play here
             </div>
           </div>
