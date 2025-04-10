@@ -1,13 +1,11 @@
 'use client';
-import React, { useRef } from 'react';
-import Draggable from 'react-draggable';
+import React from 'react';
 import { ResizableBox } from 'react-resizable';
 import 'react-resizable/css/styles.css';
 
 export default function Lyrics() {
-  const nodeRef = useRef(null);
-
   return (
+<<<<<<< HEAD
     <Draggable
       nodeRef={nodeRef}
       /* This tells Draggable to ignore mouse events on the resizable handle: */
@@ -25,7 +23,18 @@ export default function Lyrics() {
             Lyrics
           </div>
         </ResizableBox>
+=======
+    <ResizableBox
+      width={200}
+      height={200}
+      minConstraints={[100, 100]}
+      maxConstraints={[500, 500]}
+      resizeHandles={['se']}
+    >
+      <div className='bg-default-gray w-full h-full rounded-xl border border-gray-400'>
+        Lyrics
+>>>>>>> origin/master
       </div>
-    </Draggable>
+    </ResizableBox>
   );
 }
