@@ -21,17 +21,17 @@ export default function Home() {
         </div>
       </Draggable>
       <Draggable nodeRef={nodeRef} cancel=".react-resizable-handle">
-        <div ref={nodeRef} className="z-1 bg-blue-200">
+        <div ref={nodeRef} className="z-1 ">
           <Albumart />
         </div>
       </Draggable>
       <Draggable nodeRef={nodeRef} cancel=".react-resizable-handle">
-        <div ref={nodeRef} className="z-3 bg-green-200">
+        <div ref={nodeRef} className="z-3">
           <Vis />
         </div>
       </Draggable>
       <Draggable nodeRef={nodeRef} cancel=".react-resizable-handle">
-        <div ref={nodeRef} className="z-3 bg-green-200">
+        <div ref={nodeRef} className="z-3 ">
           <Runtime />
         </div>
       </Draggable>
