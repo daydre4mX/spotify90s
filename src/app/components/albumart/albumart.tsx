@@ -24,6 +24,10 @@ export default function Albumart() {
           <p className='m-1 text-center font-mono text-xs border-b border-gray-400'>
               JAMZ.MUSIC ART
             </p>
+            <div className='flex overflow-hidden justify-center m-2'>
+                <img>
+                </img>
+              </div>
           </div>
         </ResizableBox>
     </div>
