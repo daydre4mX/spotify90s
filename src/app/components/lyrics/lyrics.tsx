@@ -14,7 +14,7 @@ export default function Lyrics() {
   const nodeRef = React.useRef(null);
 
   return (
-    <Draggable bounds="body" nodeRef={nodeRef} cancel=".react-resizable-handle">
+    <Draggable nodeRef={nodeRef} cancel=".react-resizable-handle">
       <div ref={nodeRef}>
         <ResizableBox
           width={200}
@@ -23,9 +23,10 @@ export default function Lyrics() {
           maxConstraints={[500, 500]}
           resizeHandles={['se']}
         >
-          <div className="bg-default-gray w-full h-full rounded-xl border border-gray-400">
-            <p className='m-1 text-center font-mono text-xs border rounded-full'>
-              Lyrics
+          <div className="bg-default-gray w-full h-full border border-gray-400 flex-row">
+            
+            <p className='m-1 text-center font-mono text-xs bg-gray-400 border'>
+              JAMZ-Lyrics
             </p>
           </div>
         </ResizableBox>

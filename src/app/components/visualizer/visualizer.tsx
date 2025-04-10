@@ -20,7 +20,7 @@ export default function Visualizer() {
   const nodeRef = React.useRef(null);
 
   return (
-    <Draggable bounds="body" nodeRef={nodeRef} cancel=".react-resizable-handle">
+    <Draggable nodeRef={nodeRef} cancel=".react-resizable-handle">
       <div ref={nodeRef}>
         <ResizableBox
           width={200}
@@ -30,6 +30,9 @@ export default function Visualizer() {
           resizeHandles={['se']}
         >
           <div className="bg-default-gray w-full h-full rounded-xl border border-gray-400">
+            <p className='m-1 text-center font-mono text-xs rounded-full bg-gray-400 border'>
+                JAMZVisualizer
+              </p>
             <Canvas>
               <color attach="background" args={['#fff']}/>
               <ambientLight intensity ={0.5}/>

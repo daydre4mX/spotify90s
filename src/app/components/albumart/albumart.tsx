@@ -14,7 +14,7 @@ export default function Albumart() {
   const nodeRef = React.useRef(null);
 
   return (
-    <Draggable bounds="body" nodeRef={nodeRef} cancel=".react-resizable-handle">
+    <Draggable nodeRef={nodeRef} cancel=".react-resizable-handle">
       <div ref={nodeRef}>
         <ResizableBox
           width={200}
@@ -23,8 +23,10 @@ export default function Albumart() {
           maxConstraints={[500, 500]}
           resizeHandles={['se']}
         >
-          <div className="bg-default-gray w-full h-full rounded-xl border border-gray-400">
-            Albumart
+          <div className="bg-default-gray w-full h-full rounded-xl border-3 border-gray-400">
+          <p className='m-1 text-center font-mono text-xs border-b border-gray-400'>
+              JAMZ.MUSIC IMAGE
+            </p>
           </div>
         </ResizableBox>
       </div>
