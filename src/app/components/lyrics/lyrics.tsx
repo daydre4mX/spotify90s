@@ -11,11 +11,11 @@ const ResizableBox = dynamic(
 
 export default function Lyrics() {
   return (
-    <div>
+      <div>
         <ResizableBox
           width={200}
           height={200}
-          minConstraints={[150, 150]}
+          minConstraints={[100, 100]}
           maxConstraints={[500, 500]}
           resizeHandles={['se']}
         >
@@ -28,6 +28,6 @@ export default function Lyrics() {
             </div>
           </div>
         </ResizableBox>
-    </div>
+      </div>
   );
 }
