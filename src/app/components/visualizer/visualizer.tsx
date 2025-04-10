@@ -12,7 +12,7 @@ const ResizableBox = dynamic(
 );
 
 function audioReactiveScene(audioStream){
-  pass
+  console.log(1+1);
 }
 
 
