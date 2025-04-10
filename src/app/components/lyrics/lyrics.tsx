@@ -14,11 +14,12 @@ export default function Lyrics() {
   const nodeRef = React.useRef(null);
 
   return (
-      <div>
+    <Draggable nodeRef={nodeRef} cancel=".react-resizable-handle">
+      <div ref={nodeRef}>
         <ResizableBox
           width={200}
           height={200}
-          minConstraints={[150, 150]}
+          minConstraints={[100, 100]}
           maxConstraints={[500, 500]}
           resizeHandles={['se']}
         >
@@ -30,5 +31,6 @@ export default function Lyrics() {
           </div>
         </ResizableBox>
       </div>
+    </Draggable>
   );
 }
