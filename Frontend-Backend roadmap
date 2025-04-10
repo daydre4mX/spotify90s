@@ -1,0 +1,39 @@
+🧑‍🎤 User
+   |
+   |   clicks "Login with Spotify"
+   v
+🌐 Frontend (React + Next.js)
+   |
+   |  calls Supabase Auth: supabase.auth.signInWithOAuth('spotify')
+   v
+🟢 Supabase Auth + Spotify
+   |
+   |  🔐 Returns: access_token, refresh_token, user_id
+   v
+🌐 Frontend (again)
+   |
+   |  sends tokens to your backend:
+   |  POST /api/save-session
+   v
+🚀 Your Backend (Node.js + Express)
+   ├── /api/save-session         → saves tokens to DB
+   ├── /api/me                   → gets Spotify profile
+   ├── /api/play                 → starts music
+   ├── /api/pause                → pauses music
+   ├── /api/skip                 → skips to next song
+   ├── /api/previous             → goes to previous song
+   ├── /api/current-track        → shows what’s playing
+   ├── /api/playlists            → shows user playlists
+   └── /api/devices              → lists connected devices
+   |
+   |  👇 uses:
+   v
+🛢 Supabase Database
+   - stores access + refresh tokens
+   - stores user IDs
+   |
+   👇 calls:
+   v
+🎵 Spotify Web API
+   - play / pause / skip / get tracks
+   - get playlists / user info / devices
