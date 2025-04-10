@@ -11,10 +11,10 @@ const ResizableBox = dynamic(
 );
 
 export default function Lyrics() {
-  const nodeRef = useRef(null);
+  const nodeRef = React.useRef(null);
 
   return (
-    <Draggable nodeRef={nodeRef} cancel=".react-resizable-handle">
+    <Draggable bounds="body" nodeRef={nodeRef} cancel=".react-resizable-handle">
       <div ref={nodeRef}>
         <ResizableBox
           width={200}
@@ -24,7 +24,9 @@ export default function Lyrics() {
           resizeHandles={['se']}
         >
           <div className="bg-default-gray w-full h-full rounded-xl border border-gray-400">
-            Lyrics
+            <h1 className='m-1 text-center font-mono text-xs border rounded-full'>
+              Lyrics
+            </h1>
           </div>
         </ResizableBox>
       </div>

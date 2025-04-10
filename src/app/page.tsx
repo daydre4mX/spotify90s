@@ -4,7 +4,7 @@ import Vis from "./components/visualizer/visualizer";
 import Albumart from "./components/albumart/albumart";  
 export default function Home() {
   return (
-    <div className="grid grid">
+    <div className="h-dvh w-dvh bg-blue-200">
       <Lyrics />
       <Vis />
       <Albumart/>
