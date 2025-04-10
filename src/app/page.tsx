@@ -5,7 +5,6 @@ import Lyrics from "./components/lyrics/lyrics";
 import Vis from "./components/visualizer/visualizer";
 import dynamic from 'next/dynamic';
 import Albumart from "./components/albumart/albumart";  
-import Draggable from "react-draggable";
 import Playlist from "./components/playlist/playlist";
 const Draggable = dynamic(() => import('react-draggable'), { ssr: false });
 
