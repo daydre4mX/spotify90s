@@ -9,9 +9,10 @@ const ResizableBox = dynamic(
   { ssr: false }
 );
 
-export default function Lyrics() {
+export default function Runtime() {
+
   return (
-    <div>
+      <div>
         <ResizableBox
           width={200}
           height={200}
@@ -21,13 +22,10 @@ export default function Lyrics() {
         >
           <div className="bg-default-gray w-full h-full rounded-xl border-3 border-gray-400">
           <p className='m-1 text-center font-mono text-xs border-b border-gray-400'>
-              JAMZ.LYRICS
+              JAMZ.Runtime
             </p>
-            <div className='overflow-auto rounded-xs bg-gray-600 m-1 font-mono'>
-              Lyrics will play here
-            </div>
           </div>
         </ResizableBox>
-    </div>
+      </div>
   );
 }

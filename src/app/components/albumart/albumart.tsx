@@ -3,7 +3,6 @@ import React, { useRef } from 'react';
 import dynamic from 'next/dynamic';
 import 'react-resizable/css/styles.css';
 
-const Draggable = dynamic(() => import('react-draggable'), { ssr: false });
 const ResizableBox = dynamic(
   () =>
     import('react-resizable').then((mod) => mod.ResizableBox),
@@ -11,11 +10,9 @@ const ResizableBox = dynamic(
 );
 
 export default function Albumart() {
-  const nodeRef = React.useRef(null);
 
   return (
-    <Draggable nodeRef={nodeRef} cancel=".react-resizable-handle">
-      <div ref={nodeRef}>
+    <div>
         <ResizableBox
           width={200}
           height={200}
@@ -29,7 +26,6 @@ export default function Albumart() {
             </p>
           </div>
         </ResizableBox>
-      </div>
-    </Draggable>
+    </div>
   );
 }
