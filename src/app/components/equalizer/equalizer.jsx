@@ -3,7 +3,7 @@ import React from 'react'
 import { ResizableBox } from 'react-resizable'
 import 'react-resizable/css/styles.css'
 
-export default function albumart() {
+export default function equalizer() {
     return (
         <ResizableBox
             width={200}
@@ -13,7 +13,7 @@ export default function albumart() {
             resizeHandles={['se']}
         >
             <div className='bg-default-gray w-full h-full rounded-xl border border-gray-400'>
-                Album Art
+                equalizer
             </div>
         </ResizableBox>
     );  
