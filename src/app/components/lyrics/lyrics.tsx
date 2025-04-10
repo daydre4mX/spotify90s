@@ -1,5 +1,5 @@
 'use client';
-import React, { useRef } from 'react';
+import React from 'react';
 import dynamic from 'next/dynamic';
 import 'react-resizable/css/styles.css';
 
@@ -21,7 +21,12 @@ export default function Lyrics() {
         >
           <div className="bg-default-gray w-full h-full rounded-xl border-3 border-gray-400">
           <p className='m-1 text-center font-mono text-xs border-b border-gray-400'>
-              JAMZ.LYRICS
+              Jamz.Lyrics
+              // 
+              <span id="WindowClose" className="absolute right-2 top-2 cursor-pointer text-gray-400 hover:text-gray-600">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"></svg>
+              </span>
+
             </p>
             <div className='overflow-hidden rounded-xs bg-gray-600 m-1 font-mono'>
               Lyrics will play here
