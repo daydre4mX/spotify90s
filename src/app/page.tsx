@@ -1,12 +1,20 @@
+<<<<<<< HEAD
 'use client';
 import React from "react";
+=======
+>>>>>>> origin/master
 import Image from "next/image";
 import Lyrics from "./components/lyrics/lyrics";
 import Vis from "./components/visualizer/visualizer";
 import dynamic from 'next/dynamic';
 import Albumart from "./components/albumart/albumart";  
+<<<<<<< HEAD
 import Draggable from "react-draggable";
 import Playlist from "./components/playlist/playlist";
+=======
+const Draggable = dynamic(() => import('react-draggable'), { ssr: false });
+
+>>>>>>> origin/master
 export default function Home() {
   //priority is decided by the order of the divs, last item = highest
   //affecting z in div allows to change priority
