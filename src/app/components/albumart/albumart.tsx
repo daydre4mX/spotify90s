@@ -19,7 +19,7 @@ export default function Albumart() {
         <ResizableBox
           width={200}
           height={200}
-          minConstraints={[100, 100]}
+          minConstraints={[150, 150]}
           maxConstraints={[500, 500]}
           resizeHandles={['se']}
         >
