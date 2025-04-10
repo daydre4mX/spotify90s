@@ -5,7 +5,6 @@ import dynamic from 'next/dynamic';
 import 'react-resizable/css/styles.css';
 import { useTexture } from '@react-three/drei';
 import * as THREE from "three"
-import axios from "axios";
 
 const Draggable = dynamic(() => import('react-draggable'), { ssr: false });
 const ResizableBox = dynamic(
@@ -14,9 +13,10 @@ const ResizableBox = dynamic(
   { ssr: false }
 );
 
-
 const Scene = ({vertex, fragment}) => {
   const meshRef = useRef();
+
+  console.log(vertex)
 
   const noiseTexture = useTexture("noise2.png");
   
@@ -103,8 +103,15 @@ export default function Visualizer() {
 
   useEffect(() => {
 
-    axios.get("/vertexShader.glsl").then((res) => setVertex(res.data));
-    axios.get("/fragmentShader.glsl").then((res) => setFragment(res.data));
+    fetch("/vertexShader.glsl").then((res) => res.text())
+    .then((text) => {
+      setVertex(text)
+    });
+    fetch("/fragmentShader.glsl").then((res) => res.text())
+    .then((text) => {
+      setFragment(text)
+    });
+
     
   }, []);
 
