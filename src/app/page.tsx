@@ -1,8 +1,5 @@
-<<<<<<< HEAD
 'use client';
 import React from "react";
-=======
->>>>>>> origin/master
 import Image from "next/image";
 import Lyrics from "./components/lyrics/lyrics";
 import Vis from "./components/visualizer/visualizer";
