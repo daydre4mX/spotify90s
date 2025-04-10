@@ -1,10 +1,15 @@
-'use client'
+<<<<<<< HEAD
+'use client';
 import React from "react";
+=======
+>>>>>>> origin/master
 import Image from "next/image";
 import Lyrics from "./components/lyrics/lyrics";
 import Vis from "./components/visualizer/visualizer";
 import dynamic from 'next/dynamic';
 import Albumart from "./components/albumart/albumart";  
+import Draggable from "react-draggable";
+import Playlist from "./components/playlist/playlist";
 const Draggable = dynamic(() => import('react-draggable'), { ssr: false });
 
 export default function Home() {
@@ -15,7 +20,7 @@ export default function Home() {
   return (
     <div className="display-flex grid grid-cols-3">
       <Draggable nodeRef={nodeRef} cancel=".react-resizable-handle">
-        <div ref={nodeRef} className="z-2 bg-red-200">
+        <div ref={nodeRef} className="z-2">
           <Lyrics />
         </div>
       </Draggable>
@@ -24,6 +29,9 @@ export default function Home() {
       </div>
       <div className="z-3 bg-green-200">
         <Vis />
+      </div>
+      <div className="z-3 bg-green-200">
+        <Playlist />
       </div>
     </div>
   );
