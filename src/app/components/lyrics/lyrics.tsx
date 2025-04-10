@@ -24,9 +24,9 @@ export default function Lyrics() {
           resizeHandles={['se']}
         >
           <div className="bg-default-gray w-full h-full rounded-xl border border-gray-400">
-            <h1 className='m-1 text-center font-mono text-xs border rounded-full'>
+            <p className='m-1 text-center font-mono text-xs border rounded-full'>
               Lyrics
-            </h1>
+            </p>
           </div>
         </ResizableBox>
       </div>
