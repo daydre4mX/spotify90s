@@ -14,8 +14,7 @@ export default function Lyrics() {
   const nodeRef = React.useRef(null);
 
   return (
-    <Draggable nodeRef={nodeRef} cancel=".react-resizable-handle">
-      <div ref={nodeRef}>
+      <div>
         <ResizableBox
           width={200}
           height={200}
@@ -31,6 +30,5 @@ export default function Lyrics() {
           </div>
         </ResizableBox>
       </div>
-    </Draggable>
   );
 }
