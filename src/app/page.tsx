@@ -11,7 +11,7 @@ const Draggable = dynamic(() => import('react-draggable'), { ssr: false });
 export default function Home() {
   //priority is decided by the order of the divs, last item = highest
   //affecting z in div allows to change priority
-  const nodeRef = React.useRef(null);
+  const nodeRef = React.useRef(null!);
 
   return (
     <div className="bg-blue-300 display-flex grid grid-cols-1">
