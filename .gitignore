@@ -42,3 +42,4 @@ yarn-error.log*
 next-env.d.ts
 
 src/app/KatekyoArt.code-workspace
+public/inbetween.mp3
