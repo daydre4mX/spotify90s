@@ -121,7 +121,6 @@ export default function Visualizer() {
               <p className="m-1 text-center font-mono text-xs border-b border-gray-400">
                 JAMZ.Visualizer
               </p>
-<<<<<<< HEAD
               <Canvas>
                 <Scene vertex={vertex} fragment={fragment} />
                 <color attach="background" args={['#fff']} />
@@ -130,28 +129,13 @@ export default function Visualizer() {
             </div>
           </ResizableBox>
           <button
-            className="absolute top-0 right-2 z-10 p-1 flex row-auto"
+            className="absolute top-0 right-2 z-10 p-1 flex row-auto "
             onClick={toggleVisualizer}
           >
             X
           </button>
         </div>
       )}
-=======
-            <Canvas>
-              <Scene vertex={vertex} fragment={fragment} />
-              {/* 
-              <ambientLight intensity={0.5} />      
-              <spotLight intensity= {1000} position={[10, 10, 10]} angle={0.15} penumbra={1} />      
-              <pointLight intensity= {1000} position={[-10, -10, -10]} />      
-              <Box position={[-1.2, 0, 0]} />     
-              <Box position={[1.2, 0, 0]} />  */}
-            </Canvas>
-          </div>
-
-
-        </ResizableBox>
->>>>>>> origin/master
     </div>
   );
 }

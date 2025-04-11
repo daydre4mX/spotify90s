@@ -16,12 +16,15 @@ export default function Albumart() {
 
   return (
   <div>
-    <button 
-      className="transform translate-x-10 translate-y-1"
-      onClick={toggleAlbum}
-    >
-      {isOpen ? 'Close Album' : 'Open Album'}
-    </button>
+    {!isOpen && (
+      <button 
+        className="transform translate-x-10 translate-y-1" 
+        onClick={toggleAlbum}
+      >
+        Open Album Art
+      </button>
+    )}
+   
     {isOpen && (
         <div className="relative flex row-auto">
           <ResizableBox
