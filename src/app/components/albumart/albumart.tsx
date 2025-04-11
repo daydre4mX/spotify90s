@@ -22,7 +22,7 @@ export default function Albumart() {
         >
           <div className="bg-default-gray w-full h-full rounded-xl border-3 border-gray-400">
           <p className='m-1 text-center font-mono text-xs border-b border-gray-400'>
-              JAMZ.MUSIC IMAGE
+              JAMZ.MUSIC ART
             </p>
             <div className='flex overflow-hidden justify-center m-2'>
                 <img>
