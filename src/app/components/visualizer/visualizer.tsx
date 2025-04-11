@@ -4,7 +4,7 @@ import { Canvas, useFrame } from '@react-three/fiber';
 import dynamic from 'next/dynamic';
 import 'react-resizable/css/styles.css';
 import { useTexture } from '@react-three/drei';
-import * as THREE from "three"
+import * as THREE from 'three';
 
 const ResizableBox = dynamic(
   () =>
