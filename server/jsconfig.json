@@ -1,0 +1,10 @@
+{
+    "compilerOptions": {
+      "module": "esnext",
+      "target": "es6",
+      "allowJs": true,
+      "checkJs": false
+    },
+    "include": ["server.js", "routes/**/*.js", "routes/refreshToken.js"]
+  }
+  
