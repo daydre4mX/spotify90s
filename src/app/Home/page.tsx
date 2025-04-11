@@ -11,17 +11,17 @@ const Draggable = dynamic(() => import('react-draggable'), { ssr: false });
 export default function Home() {
   //priority is decided by the order of the divs, last item = highest
   //affecting z in div allows to change priority
-  const nodeRef = React.useRef(null);
+  const nodeRef = React.useRef(null!);
 
   return (
-    <div className="display-flex grid grid-cols-10">
+    <div className="bg-blue-300 min-h-screen h-screen display-flex grid grid-cols-1">
       <Draggable nodeRef={nodeRef} cancel=".react-resizable-handle">
         <div ref={nodeRef} className="z-2">
           <Lyrics />
         </div>
       </Draggable>
       <Draggable nodeRef={nodeRef} cancel=".react-resizable-handle">
-        <div ref={nodeRef} className="z-1">
+        <div ref={nodeRef} className="z-1 ">
           <Albumart />
         </div>
       </Draggable>
@@ -31,12 +31,11 @@ export default function Home() {
         </div>
       </Draggable>
       <Draggable nodeRef={nodeRef} cancel=".react-resizable-handle">
-        <div ref={nodeRef} className="z-3">
+        <div ref={nodeRef} className="z-3 ">
           <Runtime />
         </div>
       </Draggable>
     </div>
-    
 
   );
 }
