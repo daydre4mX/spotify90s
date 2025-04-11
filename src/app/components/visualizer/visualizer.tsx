@@ -14,9 +14,12 @@ const ResizableBox = dynamic(
 
 
 export default function Visualizer() {
-
-
+  
   const audioCtx = new AudioContext();
+  const music = new Audio("inbetween.mp3")
+  const source = audioCtx.createMediaElementSource(music);
+  const gainNode = audioCtx.createGain();
+  gainNode.gain.setValueAtTime(0.5, audioCtx.currentTime);
   const analyzer = audioCtx.createAnalyser();
 
   const numSamples = analyzer.frequencyBinCount;
@@ -32,8 +35,6 @@ export default function Visualizer() {
   const Scene = ({ vertex, fragment }: { vertex: string, fragment: string }) => {
     const meshRef = useRef(null!);
   
-    console.log(vertex)
-  
     let noiseTexture = useTexture("noise2.png");
   
     const width = 8;
@@ -42,6 +43,7 @@ export default function Visualizer() {
   
     useFrame((state) => {
       let time = state.clock.getElapsedTime();
+      analyzer.getByteFrequencyData(audioData)
   
       meshRef.current.material.uniforms.iTime.value = time;
       meshRef.current.material.uniforms.iChannel0.value = new THREE.DataTexture(audioData, numSamples, 1);
@@ -103,7 +105,10 @@ export default function Visualizer() {
   }, []);
 
 
-
+  function start(){
+    source.connect(gainNode);
+    gainNode.connect(audioCtx.destination);
+  }
 
   return (
     <div>
@@ -118,7 +123,7 @@ export default function Visualizer() {
           <p className='m-1 text-center font-mono text-xs border-b border-gray-400'>
             JAMZ.Visualizer
           </p>
-          <Canvas>
+          <Canvas onClick={start}>
             <Scene vertex={vertex} fragment={fragment} />
             {/* 
               <ambientLight intensity={0.5} />      
