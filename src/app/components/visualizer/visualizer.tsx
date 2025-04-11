@@ -1,5 +1,5 @@
 'use client';
-import React, { Fragment, useEffect, useMemo, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import dynamic from 'next/dynamic';
 import 'react-resizable/css/styles.css';
@@ -12,19 +12,29 @@ const ResizableBox = dynamic(
   { ssr: false }
 );
 
-const Scene = ({vertex, fragment}) => {
-  const meshRef = useRef();
+function returnAudioAsImage(audioStream){
+
+  return audioStream
+}
+
+const Scene = ({vertex, fragment}: {vertex: string, fragment: string}) => {
+  const meshRef = useRef(null!);
 
   console.log(vertex)
-
-  const noiseTexture = useTexture("noise2.png");
+  
+  let noiseTexture = useTexture("noise2.png");
+  
+  const width = 8;
+  const height = 8;
+  
   
   useFrame((state) => {
     let time = state.clock.getElapsedTime();
     
-    meshRef.current.material.uniforms.iTime.value = time + 20;
-  });
+    meshRef.current.material.uniforms.iTime.value = time; 
+    meshRef.current.material.uniforms.iChannel0.value = returnAudioAsImage(null);
 
+  });
   
   const uniforms = useMemo(
     () => ({
@@ -34,20 +44,24 @@ const Scene = ({vertex, fragment}) => {
       },
       iResolution: {
         type: "v2",
-        value: new THREE.Vector2(4,3),
+        value: new THREE.Vector2(width,height),
       },
       iChannel0: {
         type: "t",
-        value: noiseTexture,
+        value: null,
+      },
+      iMouse: {
+        type: "v4",
+        value: new THREE.Vector4(0,0,0,0),
       },
     }),
     []
   );
-
+  
 
   return(
     <mesh ref={meshRef}>
-      <planeGeometry args={[4, 3]} />
+      <planeGeometry args={[width, height]} />
       <shaderMaterial
         uniforms={uniforms}
         vertexShader={vertex}
@@ -61,9 +75,9 @@ const Scene = ({vertex, fragment}) => {
   )
 }
 
-function Box (props) {
+function Box (props: any) {
   // This reference gives us direct access to the THREE.Mesh object.
-  const ref = useRef()
+  const ref = useRef<THREE.Mesh>(null!)
 
   // Hold state for hovered and clicked events.
   const [hovered, hover] = useState(false)
@@ -73,9 +87,8 @@ function Box (props) {
   useFrame((state,delta) => (
   
     ref.current.rotation.y += delta,
-    ref.current.rotation.x += delta,
-    
-  ))
+    ref.current.rotation.x += delta
+  ));
 
   // Return the view.
   // These are regular three.js elements expressed in JSX.
@@ -99,22 +112,21 @@ export default function Visualizer() {
   const [vertex, setVertex] = useState("");
   const [fragment, setFragment] = useState("");
 
+  const fragShaderSelect = 4
+
   useEffect(() => {
 
     fetch("/vertexShader.glsl").then((res) => res.text())
     .then((text) => {
       setVertex(text)
     });
-    fetch("/fragmentShader.glsl").then((res) => res.text())
+    fetch(`/fragmentShader${fragShaderSelect}.glsl`).then((res) => res.text())
     .then((text) => {
       setFragment(text)
     });
 
     
   }, []);
-
-  console.log(vertex);
-  console.log(Fragment);
   
   return (
     <div>
@@ -131,7 +143,8 @@ export default function Visualizer() {
               </p>
             <Canvas>
               <Scene vertex={vertex} fragment={fragment} />
-              {/* <color attach="background" args={['#fff']} />
+              <color attach="background" args={['#fff']} />
+              {/* 
               <ambientLight intensity={0.5} />      
               <spotLight intensity= {1000} position={[10, 10, 10]} angle={0.15} penumbra={1} />      
               <pointLight intensity= {1000} position={[-10, -10, -10]} />      
