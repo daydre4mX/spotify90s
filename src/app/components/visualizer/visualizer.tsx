@@ -143,7 +143,6 @@ export default function Visualizer() {
               </p>
             <Canvas>
               <Scene vertex={vertex} fragment={fragment} />
-              <color attach="background" args={['#fff']} />
               {/* 
               <ambientLight intensity={0.5} />      
               <spotLight intensity= {1000} position={[10, 10, 10]} angle={0.15} penumbra={1} />      
